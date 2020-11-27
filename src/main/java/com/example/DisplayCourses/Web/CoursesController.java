@@ -24,7 +24,7 @@ public class CoursesController {
 	private TeacherRepository trepository;
 	
 	//for the page to display the courses
-	@RequestMapping(value = { "/courses" })
+	@RequestMapping(value = { "/courses", "/" })
 	public String courseList(Model model) {
 		model.addAttribute("courses", crepository.findAll());
 		return "courselist";
