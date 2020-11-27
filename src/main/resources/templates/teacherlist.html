@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Courselist</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<!-- <h1>Hey, [[${#httpServletRequest.remoteUser}]]!</h1> -->
+	<h1>Teachers</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<th>Course</th>
+		</tr>
+		<tr th:each="teacher : ${teachers}">
+			<td th:text="${teacher.name}"></td>
+		<!-- 	<td th:text="${teacher.course}"></td>  -->
+		<td> <a class="btn btn-danger"
+				th:href="@{/delete/{id}(id=${teacher.teacherid})}">Delete</a>
+			<td><a class="btn btn-warning"
+				th:href="@{/edit/{id}(id=${teacher.teacherid})}">Edit</a></td>
+		</tr>
+	</table>
+	<a class="btn btn-success" href="/add">Add Teachers</a>
+	<!-- <form th:action="@{/logout}" method="post">
+		<input type="submit" class="btn btn-danger" value="Sign Out" />
+	</form> -->
+</body>
+</html>
