@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.DisplayCourses.Domain.Course;
 import com.example.DisplayCourses.Domain.CourseRepository;
+import com.example.DisplayCourses.Domain.Teacher;
 import com.example.DisplayCourses.Domain.TeacherRepository;
 
 @Controller 
@@ -67,5 +68,19 @@ public class CoursesController {
 		model.addAttribute("teachers", trepository.findAll());
 		return "teacherlist";
 	}
+	
+	//to add the teacher
+	@RequestMapping(value = "/addTeacher")
+	public String addTeacher(Model model) {
+		model.addAttribute("teachers", new Teacher());
+		return "addteacher";
+	}
+	
+	//saves the teacher in server
+	@RequestMapping(value = "/saveTeacher", method = RequestMethod.POST)
+	public String saveTeacher(Teacher teacher) {
+			trepository.save(teacher);
+			return "redirect:teachers";
+		}
 	
 }
