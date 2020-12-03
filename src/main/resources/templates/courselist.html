@@ -7,7 +7,7 @@
 	th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-	<!-- <h1>Hey, [[${#httpServletRequest.remoteUser}]]!</h1> -->
+	<h1>Welcome, [[${#httpServletRequest.remoteUser}]]!</h1> 
 	<h1>Courses</h1>
 	<table class="table table-striped">
 		<tr>
@@ -19,15 +19,15 @@
 			<td th:text="${course.name}"></td>
 			<td th:text="${course.code}"></td>
 			<td th:text="${course.teacher.name}"></td>
-		<td> <a class="btn btn-danger"
+		<td sec:authorize="hasAuthority('ADMIN')"> <a class="btn btn-danger"
 				th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
 			<td><a class="btn btn-warning"
 				th:href="@{/edit/{id}(id=${course.id})}">Edit</a></td>
 		</tr>
 	</table>
-	<a class="btn btn-success" href="/add">Add Book</a>
-	<!-- <form th:action="@{/logout}" method="post">
+	<a class="btn btn-success" href="/add">Add Course</a>
+	 <form th:action="@{/logout}" method="post">
 		<input type="submit" class="btn btn-danger" value="Sign Out" />
-	</form> -->
+	</form> 
 </body>
 </html>

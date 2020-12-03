@@ -3,6 +3,7 @@ package com.example.DisplayCourses.Web;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,7 @@ public class CoursesController {
 	
 	//for deleting the course from server where id comes from the course
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteCourse(@PathVariable("id") Long id, Model model) {
 		crepository.deleteById(id);
 		return "redirect:../courses";
@@ -64,6 +66,7 @@ public class CoursesController {
 	
 	//for displaying teachers list
 	@RequestMapping(value = {"/teachers"})
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String teacherList(Model model) {
 		model.addAttribute("teachers", trepository.findAll());
 		return "teacherlist";
@@ -71,6 +74,7 @@ public class CoursesController {
 	
 	//to add the teacher
 	@RequestMapping(value = "/addTeacher")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addTeacher(Model model) {
 		model.addAttribute("teachers", new Teacher());
 		return "addteacher";

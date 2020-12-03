@@ -25,6 +25,9 @@ public class DisplayCoursesApplication {
 
 	@Bean
 	public CommandLineRunner courseDemo(CourseRepository crepository, TeacherRepository trepository, StudentRepository srepository) {
+		crepository.deleteAll();
+		trepository.deleteAll();
+		srepository.deleteAll();
 		
 		return (args) -> {
 			//creating users
