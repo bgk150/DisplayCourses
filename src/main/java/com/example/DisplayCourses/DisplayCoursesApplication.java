@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.DisplayCourses.Domain.Course;
 import com.example.DisplayCourses.Domain.CourseRepository;
+import com.example.DisplayCourses.Domain.Student;
+import com.example.DisplayCourses.Domain.StudentRepository;
 import com.example.DisplayCourses.Domain.Teacher;
 import com.example.DisplayCourses.Domain.TeacherRepository;
 
@@ -22,9 +24,17 @@ public class DisplayCoursesApplication {
 	}
 
 	@Bean
-	public CommandLineRunner courseDemo(CourseRepository crepository, TeacherRepository trepository) {
+	public CommandLineRunner courseDemo(CourseRepository crepository, TeacherRepository trepository, StudentRepository srepository) {
 		
 		return (args) -> {
+			//creating users
+			Student user = new Student("student", "$2y$10$0puT4Yp3giq.gziOKtBreOcp2JN1DS3x3ncgPN75F.WnKGeUH57Wi", "STUDENT");
+			Student admin = new Student("admin", "$2y$10$kCBysKa1l2eJViqiN97OL.gQy1r2Obx54GYLzlEbP3OA21KDGwQDK", "ADMIN");			
+			
+			//saving in repository
+			srepository.save(user);
+			srepository.save(admin);
+			
 			//Adding teachers to TeacherRepository
 			log.info("save some teachers");
 			trepository.save(new Teacher("Jukka Juslin"));
@@ -42,6 +52,8 @@ public class DisplayCoursesApplication {
 			for(Course course : crepository.findAll()) {
 				log.info(course.toString());
 			}
+			
+			
 		};
 	}
 }
