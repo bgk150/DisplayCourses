@@ -18,7 +18,9 @@
 		<tr th:each="course : ${courses}">
 			<td th:text="${course.name}"></td>
 			<td th:text="${course.code}"></td>
-			<td th:text="${course.teacher.name}"></td>
+		<td th:text="${course.teacher.name}"></td>
+		<td><a class = "btn btn-warning"
+			th:href="@{/teacher/{teacherId}(id=${course.teacher.teacherId})}">More about teacher</a></td>
 		<td sec:authorize="hasAuthority('ADMIN')"> <a class="btn btn-danger"
 				th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
 			<td><a class="btn btn-warning"

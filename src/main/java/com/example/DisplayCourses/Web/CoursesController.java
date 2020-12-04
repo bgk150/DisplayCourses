@@ -87,4 +87,11 @@ public class CoursesController {
 			return "redirect:teachers";
 		}
 	
+	//for displaying a teacher
+	@RequestMapping(value = "/teacher/{teacherId}", method = RequestMethod.GET)
+	public String teacher(@PathVariable("teacherId") Long teacherId, Model model) {
+		Optional<Teacher> teacher = trepository.findById(teacherId);
+		model.addAttribute("teacher", teacher);
+		return "teacherList";
+	}
 }
