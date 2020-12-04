@@ -47,7 +47,7 @@ public class Teacher {
 		return courses;
 	}
 
-	public void setBooks(List<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
