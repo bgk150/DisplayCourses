@@ -88,9 +88,9 @@ public class CoursesController {
 		}
 	
 	//for displaying a teacher
-	@RequestMapping(value = "/teacher/{teacherId}", method = RequestMethod.GET)
-	public String teacher(@PathVariable("teacherId") Long teacherId, Model model) {
-		Optional<Teacher> teacher = trepository.findById(teacherId);
+	@RequestMapping(value = "/teacher/{teacherid}", method = RequestMethod.GET)
+	public String teacher(@PathVariable("teacherid") Long teacherid, Model model) {
+		Optional<Teacher> teacher = trepository.findById(teacherid);
 		model.addAttribute("teacher", teacher);
 		return "teacherList";
 	}
