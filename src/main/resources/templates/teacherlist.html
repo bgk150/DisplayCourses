@@ -16,8 +16,10 @@
 		</tr>
 		<tr th:each="teacher : ${teachers}">
 			<td th:text="${teacher.name}"></td>
-		<td th:text="${teacher.courses.name}"></td>  		
-		<td> <a class="btn btn-danger"
+		 	<td th:each="course: ${teacher.courses}">
+		 		<ul th:text="${course.name}"></ul>
+		 	</td>   		
+			<td> <a class="btn btn-danger"
 				th:href="@{/delete/{id}(id=${teacher.teacherid})}">Delete</a>
 			<td><a class="btn btn-warning"
 				th:href="@{/edit/{id}(id=${teacher.teacherid})}">Edit</a></td>

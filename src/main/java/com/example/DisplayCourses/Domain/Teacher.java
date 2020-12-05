@@ -26,6 +26,12 @@ public class Teacher {
 		super();
 		this.name = name;
 	}
+	
+	public Teacher(String name, List<Course> courses) {
+		super();
+		this.name = name;
+		this.courses = courses;
+	}
 
 	public Long getTeacherid() {
 		return teacherid;
