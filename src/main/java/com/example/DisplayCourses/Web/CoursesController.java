@@ -45,8 +45,7 @@ public class CoursesController {
 	
 	//saves the course and teacher in server
 	@RequestMapping(value = "/saveCourse", method = RequestMethod.POST)
-	public String save(Course course, Teacher teacher) {
-		trepository.save(teacher);	
+	public String save(Course course) {
 		crepository.save(course);
 		return "redirect:/courses";
 	}
