@@ -20,9 +20,7 @@
 		 		<ul th:text="${course.name}"></ul>
 		 	</td>   		
 			<td> <a class="btn btn-danger"
-				th:href="@{/delete/{id}(id=${teacher.teacherid})}">Delete</a>
-			<td><a class="btn btn-warning"
-				th:href="@{/edit/{id}(id=${teacher.teacherid})}">Edit</a></td>
+				th:href="@{/deleteTeacher/{id}(id=${teacher.teacherid})}">Delete</a>
 		</tr>
 	</table>
 		<a class="btn btn-success" href="/courses">Back To Courses</a>

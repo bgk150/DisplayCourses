@@ -44,7 +44,7 @@ public class CoursesController {
 	
 	
 	//saves the course and teacher in server
-	@RequestMapping(value = "/saveCourse", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Course course) {
 		crepository.save(course);
 		return "redirect:/courses";
@@ -108,5 +108,14 @@ public class CoursesController {
 	@ResponseBody List<Teacher> teacherListRest() {
 		return (List<Teacher>) trepository.findAll();
 	}
+	
+	//for deleting the teacher from server where id comes from the teacher
+		@RequestMapping(value = "/deleteTeacher/{teacherid}", method = RequestMethod.GET)
+		@PreAuthorize("hasAuthority('ADMIN')")
+		public String deleteTeacher(@PathVariable("teacherid") Long teacherid, Model model) {
+			trepository.deleteById(teacherid);
+			return "redirect:../teachers";
+		}
+		
 	
 }
