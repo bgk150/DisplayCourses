@@ -8,27 +8,22 @@
 </head>
 <body>
 	<h1>Hey, [[${#httpServletRequest.remoteUser}]]!</h1> 
-	<h1>Teachers</h1>
+	<h1>More about teacher:</h1>
 	<table class="table table-striped">
 		<tr>
 			<th>Name</th>
 			<th>Course</th>
 		</tr>
-		<tr th:each="teacher : ${teachers}">
-			<td th:text="${teacher.name}"></td>
-		 	<td th:each="course: ${teacher.courses}">
+		<tr th:object="${teacher}">
+			<td th:text="*{name}"></td>
+		 	<td th:each="course: ${courses}">
 		 		<ul th:text="${course.name}"></ul>
-		 	</td>   		
+		 	</td>    		
 			<td> <a class="btn btn-danger"
 				th:href="@{/delete/{id}(id=${teacher.teacherid})}">Delete</a>
-			<td><a class="btn btn-warning"
-				th:href="@{/edit/{id}(id=${teacher.teacherid})}">Edit</a></td>
 		</tr>
 	</table>
-		<a class="btn btn-success" href="/courses">Back To Courses</a>
-	<div sec:authorize="hasAuthority('ADMIN')">
-	<a class="btn btn-success" href="/addteacher">Add Teachers</a>
-	</div>
+	<a class="btn btn-success" href="/courses">Back To Courses</a>
 	 <form th:action="@{/logout}" method="post">
 		<input type="submit" class="btn btn-danger" value="Sign Out" />
 	</form> 

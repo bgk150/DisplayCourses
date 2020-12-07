@@ -42,8 +42,9 @@ public class CoursesController {
 	
 	
 	//saves the course and teacher in server
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(Course course) {
+	@RequestMapping(value = "/saveCourse", method = RequestMethod.POST)
+	public String save(Course course, Teacher teacher) {
+		trepository.save(teacher);	
 		crepository.save(course);
 		return "redirect:courses";
 	}
@@ -61,22 +62,22 @@ public class CoursesController {
 	public String editCourse(@PathVariable("id") Long id, Model model) {
 		Optional<Course> course = crepository.findById(id);
 		model.addAttribute("course", course);
+		model.addAttribute("teachers", trepository.findAll());
 		return "editcourse";
 	}
 	
 	//for displaying teachers list
 	@RequestMapping(value = {"/teachers"})
-	@PreAuthorize("hasAuthority('ADMIN')")
 	public String teacherList(Model model) {
 		model.addAttribute("teachers", trepository.findAll());
 		return "teacherlist";
 	}
 	
 	//to add the teacher
-	@RequestMapping(value = "/addTeacher")
+	@RequestMapping(value = "/addteacher")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addTeacher(Model model) {
-		model.addAttribute("teachers", new Teacher());
+		model.addAttribute("teacher", new Teacher());
 		return "addteacher";
 	}
 	
@@ -92,6 +93,8 @@ public class CoursesController {
 	public String teacher(@PathVariable("teacherid") Long teacherid, Model model) {
 		Optional<Teacher> teacher = trepository.findById(teacherid);
 		model.addAttribute("teacher", teacher);
-		return "teacherList";
+		return "teacher";
 	}
+	
+	
 }

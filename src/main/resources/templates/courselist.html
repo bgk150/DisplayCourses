@@ -20,7 +20,7 @@
 			<td th:text="${course.code}"></td>
 		<td th:text="${course.teacher.name}"></td>
 		<td><a class = "btn btn-warning"
-			th:href="@{/teacher/{teacherid}(id=${course.teacher.teacherid})}">More about teacher</a></td>
+			th:href="@{/teacher/{teacherid}(teacherid=${course.teacher.teacherid})}">More about teacher</a></td>
 		<td sec:authorize="hasAuthority('ADMIN')"> <a class="btn btn-danger"
 				th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
 			<td><a class="btn btn-warning"
@@ -28,6 +28,7 @@
 		</tr>
 	</table>
 	<a class="btn btn-success" href="/add">Add Course</a>
+			<a class="btn btn-success" href="/teachers">Check Teachers</a>
 	 <form th:action="@{/logout}" method="post">
 		<input type="submit" class="btn btn-danger" value="Sign Out" />
 	</form> 
