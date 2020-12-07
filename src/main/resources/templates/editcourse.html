@@ -23,7 +23,7 @@
 			<br>
 			<label for="teacherlist">Teacher</label> 
 			<select id="teacherlist"
-				th:field="*{teacher.teacherid}" class="form-control">
+				th:field="*{teacher}" class="form-control">
 				<option th:each="teacher: ${teachers}"
 					th:value="${teacher.teacherid}" th:text="${teacher.name}"></option>
 			</select>

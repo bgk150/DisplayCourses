@@ -18,8 +18,10 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 
   			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="teacherlist">Teacher</label> <select id="teacherlist"
-				th:field="*{teacher.teacherid}" class="form-control">
+			
+			<label for="teacherlist">Teacher</label> 
+			<select id="teacherlist"
+				th:field="*{teacher}" class="form-control">
 				<option th:each="teacher: ${teachers}"
 					th:value="${teacher.teacherid}" th:text="${teacher.name}"></option>
 			</select>

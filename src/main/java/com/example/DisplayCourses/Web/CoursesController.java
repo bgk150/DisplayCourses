@@ -1,5 +1,6 @@
 package com.example.DisplayCourses.Web;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.DisplayCourses.Domain.Course;
 import com.example.DisplayCourses.Domain.CourseRepository;
@@ -46,7 +48,7 @@ public class CoursesController {
 	public String save(Course course, Teacher teacher) {
 		trepository.save(teacher);	
 		crepository.save(course);
-		return "redirect:courses";
+		return "redirect:/courses";
 	}
 	
 	//for deleting the course from server where id comes from the course
@@ -96,5 +98,16 @@ public class CoursesController {
 		return "teacher";
 	}
 	
+	//rest-ful data for courses
+	@RequestMapping(value="courselist", method=RequestMethod.GET) 
+	@ResponseBody List<Course> courseListRest() {
+		return (List<Course>) crepository.findAll();
+	}
+	
+	//rest-ful data for teachers
+	@RequestMapping(value="teacherlist", method=RequestMethod.GET)
+	@ResponseBody List<Teacher> teacherListRest() {
+		return (List<Teacher>) trepository.findAll();
+	}
 	
 }
